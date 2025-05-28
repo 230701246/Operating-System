@@ -1,0 +1,65 @@
+employee:
+
+vi emp.dat:
+
+TIM 5000 6
+BEN 7000 7
+AMY 6500 6
+JOY 1200 2
+ROG 6699 8
+
+VI emp.awk:
+BEGIN {
+    print "EMPLOYEES DETAILS"
+    totalPay = 0
+    count = 0
+}
+
+{
+    salaryearned = $2 * $3   # $2: hourly rate, $3: hours worked
+    if ($2 > 6000 && $3 > 4) {
+        print $2, salaryearned
+        totalPay += salaryearned
+        count++
+    }
+}
+END {
+    print "no of employees are =", count
+    print "total pay =", totalPay
+    if (count > 0) {
+        avgPay = totalPay / count
+        print "average pay =", avgPay
+    } else {
+        print "average pay = 0"
+    }
+}
+
+ gawk -f emp.awk emp.dat
+____________________________________________________________________________________________________________________________________________________________________________________________
+
+result :
+
+vi marks.awk:
+{ 
+    status = "Payya pass pa"; 
+    for (i = 2; i <= NF; i++) { 
+        if ($i < 45) { 
+            status = "Fail ahh,but keep trying"; 
+            break; 
+        } 
+    } 
+    print $0, status; 
+} 
+
+vi marks.dat:
+|pranav| [64 95 66 77 55 77]
+|kutty| [60 67 84 92 90 60]
+|singh| [90 95 84 87 56 70]
+|bhai| [60 70 65 78 90 87]
+|som_tha| [45 25 15 100 1000 200]
+
+ gawk -f marks.awk marks.dat
+
+
+
+   

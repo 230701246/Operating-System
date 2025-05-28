@@ -1,0 +1,53 @@
+addition:
+
+echo "Welcome to the Basic Calculator"
+echo "-------------------------------"
+echo "Enter first number:"
+read num1
+echo "Enter second number:"
+read num2
+
+echo "Choose operation:"
+echo "1. Addition (+)"
+echo "2. Subtraction (-)"
+echo "3. Multiplication (*)"
+echo "4. Division (/)"
+read choice
+
+case $choice in
+  1)
+    result=$((num1 + num2))
+    echo "Result: $num1 + $num2 = $result"
+    ;;
+  2)
+    result=$((num1 - num2))
+    echo "Result: $num1 - $num2 = $result"
+    ;;
+  3)
+    result=$((num1 * num2))
+    echo "Result: $num1 * $num2 = $result"
+    ;;
+  4)
+    if [ $num2 -eq 0 ]; then
+      echo "Error: Division by zero is not allowed."
+    else
+      result=$(echo "scale=2; $num1 / $num2" | bc)
+      echo "Result: $num1 / $num2 = $result"
+    fi
+    ;;
+  *)
+    echo "Invalid choice. Please select from 1 to 4."
+    ;;
+esac
+____________________________________________________________________________________________________________________________________________________________________________________________
+
+leap:
+
+echo -n "Enter a year: "
+read year
+
+if { [ $((year % 4)) -eq 0 ] && [ $((year % 100)) -ne 0 ]; } || [ $((year % 400)) -eq 0 ]; then
+  echo "$year is a leap year."
+else
+  echo "$year is not a leap year."
+fi

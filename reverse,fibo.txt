@@ -1,0 +1,37 @@
+reverse:
+
+echo -n "Enter a number: "
+read num
+
+reverse=0
+
+while [ $num -ne 0 ]
+do
+  digit=$((num % 10))                     
+  reverse=$((reverse * 10 + digit))      
+  num=$((num / 10))                       
+done
+
+echo "Reversed number: $reverse"
+______________________________________________________________________________________________________________________________________________________________________________________________
+
+fibo:
+
+echo -n "Enter the number of terms for the Fibonacci series: "
+read n
+
+a=0
+b=1
+
+echo "Fibonacci series up to $n terms:"
+
+for i in $(seq 1 $n)
+do
+  echo -n "$a "
+  temp=$((a + b))
+  a=$b
+  b=$temp
+done
+
+echo  
+

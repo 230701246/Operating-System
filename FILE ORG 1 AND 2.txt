@@ -1,0 +1,66 @@
+A) Single Level Directory 
+  
+#include <stdio.h> 
+#include <string.h> 
+int main() { 
+    int n, i; 
+    char files[10][30]; 
+    printf("Enter the number of files: "); 
+    scanf("%d", &n); 
+    printf("\nCreating Single-Level Directory Structure...\n"); 
+    for (i = 0; i < n; i++) { 
+        printf("\nEnter the name of file %d: ", i + 1); 
+        scanf("%s", files[i]); 
+        printf("\n+-----------------+\n"); 
+        printf("|  Root Directory |\n"); 
+        printf("+-----------------+\n"); 
+        for (int j = 0; j <= i; j++) { 
+            printf("        |\n"); 
+            printf("        +--> [ %s ]\n", files[j]); 
+        } 
+    } 
+    return 0; 
+} 
+____________________________________________________________________________________________________________________________________________________________________________________________
+
+B) Two-Level Directory : 
+
+#include <stdio.h> 
+#include <string.h> 
+struct File { 
+    char name[30]; 
+}; 
+struct User { 
+    char name[30]; 
+    int fileCount; 
+    struct File files[10]; 
+}; 
+int main() { 
+    int userCount, i, j; 
+    struct User users[10]; 
+    printf("Enter the number of users (directories): "); 
+    scanf("%d", &userCount); 
+    for (i = 0; i < userCount; i++) { 
+        printf("\nEnter the name of User %d: ", i + 1); 
+        scanf("%s", users[i].name); 
+        printf("Enter number of files for %s: ", users[i].name); 
+        scanf("%d", &users[i].fileCount); 
+        for (j = 0; j < users[i].fileCount; j++) { 
+            printf("Enter file %d name for %s: ", j + 1, users[i].name); 
+            scanf("%s", users[i].files[j].name); 
+        } 
+    } 
+    printf("\n\nTwo-Level Directory Structure:\n"); 
+    printf("+---------------------------+\n"); 
+    printf("|       Root Directory      |\n"); 
+    printf("+---------------------------+\n"); 
+    for (i = 0; i < userCount; i++) { 
+        printf("        |\n"); 
+        printf("        +--> User: %s\n", users[i].name); 
+        for (j = 0; j < users[i].fileCount; j++) { 
+            printf("              |\n"); 
+            printf("              +--> File: %s\n", users[i].files[j].name); 
+        } 
+    } 
+    return 0; 
+}
